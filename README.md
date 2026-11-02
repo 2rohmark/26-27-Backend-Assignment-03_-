@@ -1,4 +1,4 @@
-# 26-27 Backend Assignment 03 - 예외처리 및 검증
+# 예외처리 및 Validation
 ## 과제 배경
 
 수업에서 `GlobalExceptionHandler`에 `Exception`을 처리하는 핸들러를 추가했습니다.
