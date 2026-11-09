@@ -19,4 +19,3 @@ public class ErrorResponse {
         return new ErrorResponse(errorCode.getCode(), message);
     }
 }
-
