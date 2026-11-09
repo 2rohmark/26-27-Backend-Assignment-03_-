@@ -14,8 +14,10 @@ public enum ErrorCode {
     INVALID_REQUEST_BODY("COMMON_003", HttpStatus.BAD_REQUEST, "요청 본문의 형식이 올바르지 않습니다."),
     RESOURCE_NOT_FOUND("COMMON_004", HttpStatus.NOT_FOUND, "요청한 URL을 찾을 수 없습니다."),
     METHOD_NOT_ALLOWED("COMMON_005", HttpStatus.METHOD_NOT_ALLOWED, "지원하지 않는 HTTP 메서드입니다."),
-    INVALID_TYPE_VALUE("COMMON_006", HttpStatus.BAD_REQUEST, "경로 변수 타입이 올바르지 않습니다."),
-    UNSUPPORTED_MEDIA_TYPE("COMMON_007", HttpStatus.UNSUPPORTED_MEDIA_TYPE, "지원하지 않는 Content-Type 입니다."),
+    PATH_VARIABLE_TYPE_MISMATCH("COMMON_007", HttpStatus.BAD_REQUEST,"경로 변수의 데이터 타입이 올바르지 않습니다."),
+    QUERY_PARAM_TYPE_MISMATCH("COMMON_008",HttpStatus.BAD_REQUEST, "요청 파라미터의 데이터 타입이 올바르지 않습니다."),
+    INVALID_TYPE_VALUE("COMMON_009", HttpStatus.BAD_REQUEST, "잘못된 타입의 값이 입력되었습니다."),
+    UNSUPPORTED_MEDIA_TYPE("COMMON_010", HttpStatus.UNSUPPORTED_MEDIA_TYPE, "지원하지 않는 Content-Type 입니다."),
 
     // Member
     MEMBER_NOT_FOUND("MEMBER_001", HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),

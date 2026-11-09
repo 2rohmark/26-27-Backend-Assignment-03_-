@@ -1,6 +1,7 @@
 package com.gdg.exception.global.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.MethodParameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -8,6 +9,8 @@ import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -87,6 +90,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
         ErrorCode errorCode = ErrorCode.INVALID_TYPE_VALUE;
+        MethodParameter parameter = e.getParameter();
+        if (parameter.hasParameterAnnotation(PathVariable.class)) {
+            errorCode = ErrorCode.PATH_VARIABLE_TYPE_MISMATCH;
+        } else if (parameter.hasParameterAnnotation(RequestParam.class)) {
+            errorCode = ErrorCode.QUERY_PARAM_TYPE_MISMATCH;
+        }
         log.warn("[MethodArgumentTypeMismatchException] parameter: {}, message: {}", e.getName(), e.getMessage());
 
         return ResponseEntity
